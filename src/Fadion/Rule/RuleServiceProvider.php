@@ -33,6 +33,11 @@ class RuleServiceProvider extends ServiceProvider
         {
             return new Rule;
         });
+
+        $this->app['rule.message'] = $this->app->share(function($app)
+        {
+            return new RuleMessage;
+        });
 	}
 
 	/**
