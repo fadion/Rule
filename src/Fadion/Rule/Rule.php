@@ -76,11 +76,14 @@ class Rule
         static::$rules[$this->input][] = $rule;
     }
 
-    /**************************
-    *     Validation Rules    *
-    **************************/
+    /*************************
+    *    VALIDATION RULES    *
+    *************************/
 
     /**
+    * The field under validation must be yes, on, or 1.
+    * This is useful for validating "Terms of Service" acceptance.
+    *  
     * @return Rule
     */
     public function accepted()
@@ -90,6 +93,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be a valid URL
+    * according to the checkdnsrr PHP function.
+    * 
     * @return Rule
     */
     public function active_url()
@@ -99,6 +105,10 @@ class Rule
     }
 
     /**
+    * The field under validation must be a value after a
+    * given date. The dates will be passed into the PHP
+    * strtotime function.
+    * 
     * @param string $date
     * @return Rule
     */
@@ -109,6 +119,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be entirely
+    * alphabetic characters.
+    * 
     * @return Rule
     */
     public function alpha()
@@ -118,6 +131,9 @@ class Rule
     }
 
     /**
+    * The field under validation may have alpha-numeric
+    * characters, as well as dashes and underscores.
+    * 
     * @return Rule
     */
     public function alpha_dash()
@@ -127,6 +143,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be entirely
+    * alpha-numeric characters.
+    * 
     * @return Rule
     */
     public function alpha_num()
@@ -136,6 +155,8 @@ class Rule
     }
 
     /**
+    * The field under validation must be of type array.
+    * 
     * @return Rule
     */
     public function is_array()
@@ -145,6 +166,10 @@ class Rule
     }
 
     /**
+    * The field under validation must be a value preceding
+    * the given date. The dates will be passed into the PHP
+    * strtotime function.
+    * 
     * @param string $date
     * @return Rule
     */
@@ -155,6 +180,10 @@ class Rule
     }
 
     /**
+    * The field under validation must have a size between
+    * the given min and max. Strings, numerics, and files
+    * are evaluated in the same fashion as the size rule.
+    * 
     * @param mixed $min
     * @param mixed $max
     * @return Rule
@@ -166,6 +195,12 @@ class Rule
     }
 
     /**
+    * The field under validation must have a matching
+    * field of foo_confirmation. For example, if the
+    * field under validation is password, a matching
+    * password_confirmation field must be present in
+    * the input.
+    * 
     * @return Rule
     */
     public function confirmed()
@@ -175,6 +210,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be a valid
+    * date according to the strtotime PHP function.
+    * 
     * @return Rule
     */
     public function date()
@@ -184,6 +222,10 @@ class Rule
     }
 
     /**
+    * The field under validation must match the
+    * format defined according to the
+    * date_parse_from_format PHP function.
+    * 
     * @param string $format
     * @return Rule
     */
@@ -194,6 +236,9 @@ class Rule
     }
 
     /**
+    * The given field must be different than
+    * the field under validation.
+    * 
     * @param string $field
     * @return Rule
     */
@@ -204,6 +249,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be numeric
+    * and must have an exact length of value.
+    * 
     * @param string $value
     * @return Rule
     */
@@ -214,6 +262,9 @@ class Rule
     }
 
     /**
+    * The field under validation must have a length
+    * between the given min and max.
+    * 
     * @param mixed $min
     * @param mixed $max
     * @return Rule
@@ -225,6 +276,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be formatted
+    * as an e-mail address.
+    * 
     * @return Rule
     */
     public function email()
@@ -234,6 +288,9 @@ class Rule
     }
 
     /**
+    * The field under validation must exist on
+    * a given database table.
+    * 
     * @return Rule
     */
     public function exists()
@@ -243,6 +300,9 @@ class Rule
     }
 
     /**
+    * The file under validation must be an
+    * image (jpeg, png, bmp, or gif).
+    * 
     * @return Rule
     */
     public function image()
@@ -252,6 +312,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be included
+    * in the given list of values.
+    * 
     * @return Rule
     */
     public function in()
@@ -261,6 +324,8 @@ class Rule
     }
 
     /**
+    * The field under validation must have an integer value.
+    * 
     * @return Rule
     */
     public function integer()
@@ -270,6 +335,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be formatted
+    * as an IP address.
+    * 
     * @return Rule
     */
     public function ip()
@@ -279,6 +347,11 @@ class Rule
     }
 
     /**
+    * The field under validation must be less than
+    * or equal to a maximum value. Strings, numerics,
+    * and files are evaluated in the same fashion as
+    * the size rule.
+    * 
     * @param int $value
     * @return Rule
     */
@@ -289,6 +362,9 @@ class Rule
     }
 
     /**
+    * The file under validation must have a MIME
+    * type corresponding to one of the listed extensions.
+    * 
     * @return Rule
     */
     public function mimes()
@@ -298,6 +374,10 @@ class Rule
     }
 
     /**
+    * The field under validation must have a minimum
+    * value. Strings, numerics, and files are evaluated
+    * in the same fashion as the size rule.
+    * 
     * @param int $value
     * @return Rule
     */
@@ -308,6 +388,9 @@ class Rule
     }
 
     /**
+    * The field under validation must not be
+    * included in the given list of values.
+    * 
     * @return Rule
     */
     public function not_in()
@@ -317,6 +400,8 @@ class Rule
     }
 
     /**
+    * The field under validation must have a numeric value.
+    * 
     * @return Rule
     */
     public function numeric()
@@ -326,6 +411,9 @@ class Rule
     }
 
     /**
+    * The field under validation must match the given
+    * regular expression.
+    * 
     * @param string $pattern
     * @return Rule
     */
@@ -336,6 +424,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be present
+    * in the input data.
+    * 
     * @return Rule
     */
     public function required()
@@ -345,6 +436,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be present if
+    * the field field is equal to value.
+    * 
     * @param string $field
     * @param string $value
     * @return Rule
@@ -356,6 +450,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be present only
+    * if any of the other specified fields are present.
+    * 
     * @return Rule
     */
     public function required_with()
@@ -365,6 +462,9 @@ class Rule
     }
 
     /**
+    * The field under validation must be present only
+    * if all of the other specified fields are present.
+    * 
     * @return Rule
     */
     public function required_with_all()
@@ -374,6 +474,10 @@ class Rule
     }
 
     /**
+    * The field under validation must be present
+    * only when any of the other specified fields
+    * are not present.
+    * 
     * @return Rule
     */
     public function required_without()
@@ -383,6 +487,10 @@ class Rule
     }
 
     /**
+    * The field under validation must be present only
+    * when the all of the other specified fields are
+    * not present.
+    * 
     * @return Rule
     */
     public function required_without_all()
@@ -392,6 +500,8 @@ class Rule
     }
 
     /**
+    * The given field must match the field under validation.
+    * 
     * @param string $field
     * @return Rule
     */
@@ -402,6 +512,12 @@ class Rule
     }
 
     /**
+    * The field under validation must have a size matching
+    * the given value. For string data, value corresponds
+    * to the number of characters. For numeric data, value
+    * corresponds to a given integer value. For files,
+    * size corresponds to the file size in kilobytes.
+    * 
     * @param param $value
     * @return Rule
     */
@@ -412,6 +528,10 @@ class Rule
     }
 
     /**
+    * The field under validation must be unique on a
+    * given database table. If the column option is
+    * not specified, the field name will be used.
+    * 
     * @return Rule
     */
     public function unique()
@@ -421,6 +541,8 @@ class Rule
     }
 
     /**
+    * The field under validation must be formatted as an URL.
+    * 
     * @return Rule
     */
     public function url()
