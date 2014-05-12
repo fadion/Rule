@@ -86,5 +86,5 @@ Rule::to('email')->unique('users', 'email_address', 10);
 Laravel's rule for validating an input as `array` is renamed to `is_array()`. The word "array" is reserved in PHP and can't be used as a method name, hence the rename.
 
 ```php
-Rule::to('languages')->array();
+Rule::to('languages')->is_array();
 ```
