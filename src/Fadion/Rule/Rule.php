@@ -597,4 +597,16 @@ class Rule
         return $this;
     }
 
+    /**
+    * Run validation checks against a field only if that field
+    * is present in the input array.
+    * 
+    * @return Rule
+    */
+    public function sometimes()
+    {
+        $this->addRule('sometimes');
+        return $this;
+    }
+
 }
