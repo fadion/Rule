@@ -20,7 +20,7 @@ class Rule
     * @param string $input
     * @return Rule
     */
-    public function to($input)
+    public function add($input)
     {
         $this->input = $input;
         static::$rules[$input] = array();
@@ -38,7 +38,7 @@ class Rule
     {
         $rule = new static();
 
-        return $rule->to($input);
+        return $rule->add($input);
     }
 
     /**
@@ -52,17 +52,6 @@ class Rule
         static::$rules = array();
 
         return $rules;
-    }
-
-    /**
-    * Alias of build().
-    * Just for fun :)
-    * 
-    * @return array
-    */
-    public function theWorld()
-    {
-        return $this->build();
     }
 
     /**

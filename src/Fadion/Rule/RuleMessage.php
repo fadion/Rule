@@ -20,7 +20,7 @@ class RuleMessage
     * @param string $input
     * @return RuleMessage
     */
-    public function to($input)
+    public function add($input)
     {
         $this->input = $input;
 
@@ -37,7 +37,7 @@ class RuleMessage
     {
         $rule = new static();
 
-        return $rule->to($input);
+        return $rule->add($input);
     }
 
     /**
