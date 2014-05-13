@@ -609,4 +609,29 @@ class Rule
         return $this;
     }
 
+    /**
+    * Handle custom rules.
+    * 
+    * @param string $name
+    * @param array $args
+    * @return Rule
+    */
+    public function __call($name, $args)
+    {
+        $rule = $name;
+
+        if (count($args))
+        {
+            $rule .= ':';
+
+            foreach ($args as $arg)
+            {
+                $rule .= ",$arg";
+            }
+        }
+
+        $this->addRule($rule);
+        return $this;
+    }
+
 }
