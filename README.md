@@ -86,6 +86,19 @@ Rule::add('email')->unique('users', 'email_address', 10);
 Rule::add('email')->unique('users', 'email_address', 10, 'account_id', 1);
 ```
 
+**Custom rules**
+
+`Rule` handles custom rules in the same way as the predefined ones. It even accepts parameters.
+
+```php
+Validator::extend('foo', function($attribute, $value, $parameters)
+{
+    return $value == 'foo';
+});
+
+Rule::add('name')->required()->foo();
+```
+
 **Array rule**
 
 Laravel's rule for validating an input as `array` is renamed to `is_array()`. The word "array" is reserved in PHP and can't be used as a method name, hence the rename.
