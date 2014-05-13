@@ -304,11 +304,12 @@ class Rule
     * The field under validation must be included
     * in the given list of values.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function in()
+    public function in(Array $list)
     {
-        $this->addRule('in:'.implode(',', func_get_args()));
+        $this->addRule('in:'.implode(',', $list));
         return $this;
     }
 
@@ -354,11 +355,12 @@ class Rule
     * The file under validation must have a MIME
     * type corresponding to one of the listed extensions.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function mimes()
+    public function mimes(Array $list)
     {
-        $this->addRule('mimes:'.implode(',', func_get_args()));
+        $this->addRule('mimes:'.implode(',', $list));
         return $this;
     }
 
@@ -380,11 +382,12 @@ class Rule
     * The field under validation must not be
     * included in the given list of values.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function not_in()
+    public function not_in(Array $list)
     {
-        $this->addRule('not_in:'.implode(',', func_get_args()));
+        $this->addRule('not_in:'.implode(',', $list));
         return $this;
     }
 
@@ -442,11 +445,12 @@ class Rule
     * The field under validation must be present only
     * if any of the other specified fields are present.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function required_with()
+    public function required_with(Array $list)
     {
-        $this->addRule('required_with:'.implode(',', func_get_args()));
+        $this->addRule('required_with:'.implode(',', $list));
         return $this;
     }
 
@@ -454,11 +458,12 @@ class Rule
     * The field under validation must be present only
     * if all of the other specified fields are present.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function required_with_all()
+    public function required_with_all(Array $list)
     {
-        $this->addRule('required_with_all:'.implode(',', func_get_args()));
+        $this->addRule('required_with_all:'.implode(',', $list));
         return $this;
     }
 
@@ -467,11 +472,12 @@ class Rule
     * only when any of the other specified fields
     * are not present.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function required_without()
+    public function required_without(Array $list)
     {
-        $this->addRule('required_without:'.implode(',', func_get_args()));
+        $this->addRule('required_without:'.implode(',', $list));
         return $this;
     }
 
@@ -480,11 +486,12 @@ class Rule
     * when the all of the other specified fields are
     * not present.
     * 
+    * @param array $list
     * @return Rule
     */
-    public function required_without_all()
+    public function required_without_all(Array $list)
     {
-        $this->addRule('required_without_all:'.implode(',', func_get_args()));
+        $this->addRule('required_without_all:'.implode(',', $list));
         return $this;
     }
 

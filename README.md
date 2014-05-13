@@ -63,22 +63,20 @@ if ($validator->fails())
 
 **Rules with parameters**
 
-Parameters, those passed to Laravel's rules after the colon (rule:parameter), are simple method arguments. There can be one or more arguments, depending on the rule.
+Rule parameters are handled as simple method arguments. There can be one or more arguments, depending on the rule and some can be arrays too (like: `in`, `not_in`, `mimes`, etc.);
 
 ```php
 Rule::add('date')->date_format('mm/dd/YYYY');
 Rule::add('age')->between(5, 15);
+Rule::add('role')->in(['Admin', 'Moderator', 'Editor']);
 ```
 
-**Rules with flexible number of parameters**
+**Exists and Unique**
 
-There are a few rules, listed below, that accept a flexible number of parameters. These are handled via dynamic function arguments, which unfortunately won't provide any useful information in IDEs. In a future update (hopefully asap), their behaviour will change so they can accept a specified list of arguments.
+`exists` and `unique` are handled via dynamic function arguments, which unfortunately won't provide any useful information in IDEs. In a future update (hopefully asap), their behaviour will change so they can accept a specified list of arguments.
 
 ```php
 Rule::add('username')->exists('users', 'name');
-Rule::add('role')->in('Admin', 'Moderator', 'Editor');
-Rule::add('membership')->not_in('Free', 'Normal');
-Rule::add('photo')->mimes('jpeg', 'png');
 Rule::add('email')->unique('users', 'email_address', 10);
 ```
 
