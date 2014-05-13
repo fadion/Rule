@@ -280,11 +280,32 @@ class Rule
     * The field under validation must exist on
     * a given database table.
     * 
+    * @param string $table
+    * @param string $column
     * @return Rule
     */
-    public function exists()
+    public function exists($table, $column = null)
     {
-        $this->addRule('exists:'.implode(',', func_get_args()));
+        $rule = $table;
+
+        // Take any argument after the 2 defined ones.
+        $args = array_slice(func_get_args(), 2);
+
+        if (isset($column))
+        {
+            $rule .= ",$column";
+        }
+
+        if ($args)
+        {
+            // Add optional arguments.
+            foreach ($args as $arg)
+            {
+                $rule .= ",$arg";
+            }
+        }
+
+        $this->addRule("exists:$rule");
         return $this;
     }
 
@@ -528,11 +549,40 @@ class Rule
     * given database table. If the column option is
     * not specified, the field name will be used.
     * 
+    * @param string $table
+    * @param string $column
+    * @param int $id
     * @return Rule
     */
-    public function unique()
+    public function unique($table, $column = null, $id = false)
     {
-        $this->addRule('unique:'.implode(',', func_get_args()));
+        $rule = $table;
+
+        // Take any argument after the 3 defined ones.
+        $args = array_slice(func_get_args(), 3);
+
+        if (isset($column))
+        {
+            $rule .= ",$column";
+        }
+
+        // A NULL value is a valid one for the validator,
+        // so an explicit FALSE is checked.
+        if ($id !== false)
+        {
+            $rule .= ",$id";
+        }
+
+        if ($args)
+        {
+            // Add optional arguments.
+            foreach ($args as $arg)
+            {
+                $rule .= ",$arg";
+            }
+        }
+
+        $this->addRule("unique:$rule");
         return $this;
     }
 
