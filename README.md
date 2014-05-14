@@ -107,6 +107,20 @@ Laravel's rule for validating an input as `array` is renamed to `is_array()`. Th
 Rule::add('languages')->is_array();
 ```
 
+**Attribute names**
+
+Laravel has an option to alias input names with custom attributes, as a way to build better error messages. `Rule` provides an easy way to create them.
+
+```php
+Rule::add('name', 'Your name')->required();
+Rule::add('email', 'Your email')->required()->email();
+
+$validator = Validator::make(Input::all(), Rule::build());
+
+// Apply attributes
+$validator->setAttributeNames(Rule::attributes());
+```
+
 ## Messages
 
 There's no way that you start writing expressive rules, but keep messages as arrays. `Rule` will handle those too with the `RuleMessage` class, in almost the same way it handles rules.
