@@ -94,6 +94,17 @@ class Rule
     }
 
     /**
+    * The field under validation must be a valid URL
+    * according to the checkdnsrr PHP function.
+    * 
+    * @return Rule
+    */
+    public function activeUrl()
+    {
+        return $this->active_url();
+    }
+
+    /**
     * The field under validation must be a value after a
     * given date. The dates will be passed into the PHP
     * strtotime function.
@@ -132,6 +143,17 @@ class Rule
     }
 
     /**
+    * The field under validation may have alpha-numeric
+    * characters, as well as dashes and underscores.
+    * 
+    * @return Rule
+    */
+    public function alphaDash()
+    {
+        return $this->alpha_dash();
+    }
+
+    /**
     * The field under validation must be entirely
     * alpha-numeric characters.
     * 
@@ -144,6 +166,17 @@ class Rule
     }
 
     /**
+    * The field under validation must be entirely
+    * alpha-numeric characters.
+    * 
+    * @return Rule
+    */
+    public function alphaNum()
+    {
+        return $this->alpha_num();
+    }
+
+    /**
     * The field under validation must be of type array.
     * 
     * @return Rule
@@ -152,6 +185,16 @@ class Rule
     {
         $this->addRule('array');
         return $this;
+    }
+
+    /**
+    * The field under validation must be of type array.
+    * 
+    * @return Rule
+    */
+    public function isArray()
+    {
+        return $this->is_array();
     }
 
     /**
@@ -225,6 +268,19 @@ class Rule
     }
 
     /**
+    * The field under validation must match the
+    * format defined according to the
+    * date_parse_from_format PHP function.
+    * 
+    * @param string $format
+    * @return Rule
+    */
+    public function dateFormat($format)
+    {
+        return $this->date_format($format);
+    }
+
+    /**
     * The given field must be different than
     * the field under validation.
     * 
@@ -262,6 +318,19 @@ class Rule
     {
         $this->addRule("digits_between:$min,$max");
         return $this;
+    }
+
+    /**
+    * The field under validation must have a length
+    * between the given min and max.
+    * 
+    * @param mixed $min
+    * @param mixed $max
+    * @return Rule
+    */
+    public function digitsBetween($min, $max)
+    {
+        return $this->digits_between($min, $max);
     }
 
     /**
@@ -413,6 +482,18 @@ class Rule
     }
 
     /**
+    * The field under validation must not be
+    * included in the given list of values.
+    * 
+    * @param array $list
+    * @return Rule
+    */
+    public function notIn(Array $list)
+    {
+        return $this->not_in($list);
+    }
+
+    /**
     * The field under validation must have a numeric value.
     * 
     * @return Rule
@@ -463,6 +544,19 @@ class Rule
     }
 
     /**
+    * The field under validation must be present if
+    * the field field is equal to value.
+    * 
+    * @param string $field
+    * @param string $value
+    * @return Rule
+    */
+    public function requiredIf($field, $value)
+    {
+        return $this->required_if($field, $value);
+    }
+
+    /**
     * The field under validation must be present only
     * if any of the other specified fields are present.
     * 
@@ -477,6 +571,18 @@ class Rule
 
     /**
     * The field under validation must be present only
+    * if any of the other specified fields are present.
+    * 
+    * @param array $list
+    * @return Rule
+    */
+    public function requiredWith(Array $list)
+    {
+        return $this->required_with($list);
+    }
+
+    /**
+    * The field under validation must be present only
     * if all of the other specified fields are present.
     * 
     * @param array $list
@@ -486,6 +592,18 @@ class Rule
     {
         $this->addRule('required_with_all:'.implode(',', $list));
         return $this;
+    }
+
+    /**
+    * The field under validation must be present only
+    * if all of the other specified fields are present.
+    * 
+    * @param array $list
+    * @return Rule
+    */
+    public function requiredWithAll(Array $list)
+    {
+        return $this->required_with_all($list);
     }
 
     /**
@@ -503,6 +621,19 @@ class Rule
     }
 
     /**
+    * The field under validation must be present
+    * only when any of the other specified fields
+    * are not present.
+    * 
+    * @param array $list
+    * @return Rule
+    */
+    public function requiredWithout(Array $list)
+    {
+        return $this->required_without($list);
+    }
+
+    /**
     * The field under validation must be present only
     * when the all of the other specified fields are
     * not present.
@@ -514,6 +645,19 @@ class Rule
     {
         $this->addRule('required_without_all:'.implode(',', $list));
         return $this;
+    }
+
+    /**
+    * The field under validation must be present only
+    * when the all of the other specified fields are
+    * not present.
+    * 
+    * @param array $list
+    * @return Rule
+    */
+    public function requiredWithoutAll(Array $list)
+    {
+        return $this->required_without_all($list);
     }
 
     /**

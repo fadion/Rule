@@ -96,6 +96,18 @@ class RuleMessage
     }
 
     /**
+    * The field under validation must be a valid URL
+    * according to the checkdnsrr PHP function.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function activeUrl($message)
+    {
+        return $this->active_url($message);
+    }
+
+    /**
     * The field under validation must be a value after a
     * given date. The dates will be passed into the PHP
     * strtotime function.
@@ -136,6 +148,18 @@ class RuleMessage
     }
 
     /**
+    * The field under validation may have alpha-numeric
+    * characters, as well as dashes and underscores.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function alphaDash($message)
+    {
+        return $this->alpha_dash($message);
+    }
+
+    /**
     * The field under validation must be entirely
     * alpha-numeric characters.
     * 
@@ -149,6 +173,18 @@ class RuleMessage
     }
 
     /**
+    * The field under validation must be entirely
+    * alpha-numeric characters.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function alphaNum($message)
+    {
+        return $this->alpha_num($message);
+    }
+
+    /**
     * The field under validation must be of type array.
     * 
     * @param string $message
@@ -158,6 +194,17 @@ class RuleMessage
     {
         $this->addMessage('array', $message);
         return $this;
+    }
+
+    /**
+    * The field under validation must be of type array.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function isArray($message)
+    {
+        return $this->is_array($message);
     }
 
     /**
@@ -232,6 +279,19 @@ class RuleMessage
     }
 
     /**
+    * The field under validation must match the
+    * format defined according to the
+    * date_parse_from_format PHP function.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function dateFormat($message)
+    {
+        return $this->date_format($message);
+    }
+
+    /**
     * The given field must be different than
     * the field under validation.
     * 
@@ -268,6 +328,18 @@ class RuleMessage
     {
         $this->addMessage('digits_between', $message);
         return $this;
+    }
+
+    /**
+    * The field under validation must have a length
+    * between the given min and max.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function digitsBetween($message)
+    {
+        return $this->digits_between($message);
     }
 
     /**
@@ -403,6 +475,18 @@ class RuleMessage
     }
 
     /**
+    * The field under validation must not be
+    * included in the given list of values.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function notIn($message)
+    {
+        return $this->not_in($message);
+    }
+
+    /**
     * The field under validation must have a numeric value.
     * 
     * @param string $message
@@ -454,6 +538,18 @@ class RuleMessage
     }
 
     /**
+    * The field under validation must be present if
+    * the field field is equal to value.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function requiredIf($message)
+    {
+        return $this->required_if($message);
+    }
+
+    /**
     * The field under validation must be present only
     * if any of the other specified fields are present.
     * 
@@ -468,6 +564,18 @@ class RuleMessage
 
     /**
     * The field under validation must be present only
+    * if any of the other specified fields are present.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function requiredWith($message)
+    {
+        return $this->required_with($message);
+    }
+
+    /**
+    * The field under validation must be present only
     * if all of the other specified fields are present.
     * 
     * @param string $message
@@ -477,6 +585,18 @@ class RuleMessage
     {
         $this->addMessage('required_with_all', $message);
         return $this;
+    }
+
+    /**
+    * The field under validation must be present only
+    * if all of the other specified fields are present.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function requiredWithAll($message)
+    {
+        return $this->required_with_all($message);
     }
 
     /**
@@ -494,6 +614,19 @@ class RuleMessage
     }
 
     /**
+    * The field under validation must be present
+    * only when any of the other specified fields
+    * are not present.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function requiredWithout($message)
+    {
+        return $this->required_without($message);
+    }
+
+    /**
     * The field under validation must be present only
     * when the all of the other specified fields are
     * not present.
@@ -505,6 +638,19 @@ class RuleMessage
     {
         $this->addMessage('required_without_all', $message);
         return $this;
+    }
+
+    /**
+    * The field under validation must be present only
+    * when the all of the other specified fields are
+    * not present.
+    * 
+    * @param string $message
+    * @return RuleMessage
+    */
+    public function requiredWithoutAll($message)
+    {
+        return $this->required_without_all($message);
     }
 
     /**
