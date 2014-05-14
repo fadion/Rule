@@ -107,7 +107,7 @@ Laravel's rule for validating an input as `array` is renamed to `is_array()`. Th
 Rule::add('languages')->is_array();
 ```
 
-**Attribute names**
+## Attribute names
 
 Laravel has an option to alias input names with custom attributes, as a way to build better error messages. `Rule` provides an easy way to create them.
 
@@ -123,30 +123,17 @@ $validator->setAttributeNames(Rule::attributes());
 
 ## Messages
 
-There's no way that you start writing expressive rules, but keep messages as arrays. `Rule` will handle those too with the `RuleMessage` class, in almost the same way it handles rules.
-
-```
-Messages are optional. If you don't use them or wanna keep the array syntax, ignore this section.
-```
-
-First, you'll have to add an alias, so you can use the class anywhere in your code:
-
-Add `'RuleMessage' => 'Fadion\Rule\Facades\RuleMessage'` to your `app/config/app.php` file, inside the `aliases` array.
-
-Now you can start building messages expressively.
+There's no way that you start writing expressive rules, but keep messages as arrays. `Rule` will handle those too in a very elegant and easy to use way. Just add a `message()` method after the rule:
 
 ```php
-Rule::add('email')->required()->email();
-Rule::add('password')->required()->between(5, 15);
+Rule::add('email')
+    ->required()->message("Email shouldn't be empty.")
+    ->email()->message("Email appears to be invalid.");
 
-RuleMessage::add('email')
-           ->required("Email shouldn't be empty.")
-           ->email("Email appears to be invalid.");
-
-RuleMessage::add('password')
-           ->required("Password shouldn't be empty.")
-           ->between("Make that password more secure.");
+Rule::add('password')
+    ->required()->message("Password shouldn't be empty.")
+    ->between(5, 15)->message("Make that password more secure!");
 
 $rules = Rule::build();
-$messages = RuleMessage::build();
+$messages = Rule::messages();
 ```

@@ -9,6 +9,11 @@ class Rule
     private static $rules = array();
 
     /**
+    * @static array Messages
+    */
+    private static $messages = array();
+
+    /**
     * @static array Input attributes
     */
     private static $attributes = array();
@@ -17,6 +22,11 @@ class Rule
     * @var string Actual input
     */
     private $input;
+
+    /**
+    * @var string Current rule
+    */
+    private $currentRule;
 
     /**
     * Starts the rule builder with an
@@ -67,6 +77,19 @@ class Rule
     }
 
     /**
+    * Returns the array of messages.
+    * 
+    * @return array
+    */
+    public function messages()
+    {
+        $messages = static::$messages;
+        static::$messages = array();
+
+        return $messages;
+    }
+
+    /**
     * Returns the array of attributes.
     * 
     * @return array
@@ -80,6 +103,21 @@ class Rule
     }
 
     /**
+    * Adds a message for the current rule.
+    * 
+    * @return Rule
+    */
+    public function message($message)
+    {
+        if (isset($this->currentRule))
+        {
+            static::$messages[$this->input.'.'.$this->currentRule] = $message;
+        }
+
+        return $this;
+    }
+
+    /**
     * Adds a rule to the ruleset.
     * 
     * @param string $rule 
@@ -88,6 +126,8 @@ class Rule
     private function addRule($rule)
     {
         static::$rules[$this->input][] = $rule;
+
+        $this->currentRule = $rule;
     }
 
     /*************************
