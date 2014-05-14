@@ -827,7 +827,7 @@ class Rule
     */
     public function __call($name, $args)
     {
-        $rule = $name;
+        $rule = snake_case($name);
 
         if (count($args))
         {
