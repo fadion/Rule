@@ -9,6 +9,11 @@ class Rule
     private static $rules = array();
 
     /**
+    * @static array Input attributes
+    */
+    private static $attributes = array();
+
+    /**
     * @var string Actual input
     */
     private $input;
@@ -18,12 +23,18 @@ class Rule
     * input target.
     * 
     * @param string $input
+    * @param string|null $attribute
     * @return Rule
     */
-    public function add($input)
+    public function add($input, $attribute = null)
     {
         $this->input = $input;
         static::$rules[$input] = array();
+
+        if (isset($attribute))
+        {
+            static::$attributes[$input] = $attribute;
+        }
 
         return $this;
     }
@@ -32,13 +43,14 @@ class Rule
     * Static factory.
     * 
     * @param string $input
+    * @param string|null $attribute
     * @return Rule
     */
-    public static function make($input)
+    public static function make($input, $attribute = null)
     {
         $rule = new static();
 
-        return $rule->add($input);
+        return $rule->add($input, $attribute);
     }
 
     /**
@@ -52,6 +64,19 @@ class Rule
         static::$rules = array();
 
         return $rules;
+    }
+
+    /**
+    * Returns the array of attributes.
+    * 
+    * @return array
+    */
+    public function attributes()
+    {
+        $attributes = static::$attributes;
+        static::$attributes = array();
+
+        return $attributes;
     }
 
     /**
