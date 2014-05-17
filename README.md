@@ -17,7 +17,7 @@ You'll be writing:
 Rule::add('username')->required()->alpha();
 Rule::add('email')->required()->email();
 
-$rules = Rule::build();
+$rules = Rule::get();
 ```
 
 Which method is more easy to read or write is a matter of personal preference, so I'm not taking sides. However, using `Rule` offers two main advantages:
@@ -53,7 +53,7 @@ $inputs = Input::all();
 Rule::add('username')->required()->alpha();
 Rule::add('email')->required()->email();
 
-$validator = Validator::make($inputs, Rule::build());
+$validator = Validator::make($inputs, Rule::get());
 
 if ($validator->fails())
 {
@@ -115,10 +115,10 @@ Laravel has an option to alias input names with custom attributes, as a way to b
 Rule::add('name', 'Your name')->required();
 Rule::add('email', 'Your email')->required()->email();
 
-$validator = Validator::make(Input::all(), Rule::build());
+$validator = Validator::make(Input::all(), Rule::get());
 
 // Apply attributes
-$validator->setAttributeNames(Rule::attributes());
+$validator->setAttributeNames(Rule::getAttributes());
 ```
 
 ## Messages
@@ -134,6 +134,6 @@ Rule::add('password')
     ->required()->message("Password shouldn't be empty.")
     ->between(5, 15)->message("Make that password more secure!");
 
-$rules = Rule::build();
-$messages = Rule::messages();
+$rules = Rule::get();
+$messages = Rule::getMessages();
 ```

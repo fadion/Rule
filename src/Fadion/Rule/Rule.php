@@ -68,7 +68,7 @@ class Rule
     * 
     * @return array
     */
-    public function build()
+    public function get()
     {
         $rules = static::$rules;
         static::$rules = array();
@@ -81,7 +81,7 @@ class Rule
     * 
     * @return array
     */
-    public function messages()
+    public function getMessages()
     {
         $messages = static::$messages;
         static::$messages = array();
@@ -94,7 +94,7 @@ class Rule
     * 
     * @return array
     */
-    public function attributes()
+    public function getAttributes()
     {
         $attributes = static::$attributes;
         static::$attributes = array();
