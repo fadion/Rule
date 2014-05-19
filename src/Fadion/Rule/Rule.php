@@ -6,27 +6,27 @@ class Rule
     /**
     * @static array Validation rules
     */
-    private static $rules = array();
+    protected static $rules = array();
 
     /**
     * @static array Messages
     */
-    private static $messages = array();
+    protected static $messages = array();
 
     /**
     * @static array Input attributes
     */
-    private static $attributes = array();
+    protected static $attributes = array();
 
     /**
     * @var string Actual input
     */
-    private $input;
+    protected $input;
 
     /**
     * @var string Current rule
     */
-    private $currentRule;
+    protected $currentRule;
 
     /**
     * Starts the rule builder with an
@@ -123,7 +123,7 @@ class Rule
     * @param string $rule 
     * @return void
     */
-    private function addRule($rule)
+    protected function addRule($rule)
     {
         static::$rules[$this->input][] = $rule;
 
