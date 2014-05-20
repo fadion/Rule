@@ -107,15 +107,18 @@ Laravel's rule for validating an input as `array` is renamed to `is_array()`. Th
 Rule::add('languages')->is_array();
 ```
 
-**Method names***
+**Method names**
 
 Methods can be written as either snake_case (as Laravel accepts rule names) or as camelCase (psr-2). Both cases behave exactly the same, so use whatever feels better.
 
 So, the methods below are equivalent:
 
 ```php
-Rule::add('date')->date_format('Y-m-d);
+Rule::add('date')->date_format('Y-m-d');
 Rule::add('date')->dateFormat('Y-m-d');
+
+Rule::add('username')->alpha_dash();
+Rule::add('username')->alphaDash();
 ```
 
 ## Attribute names
