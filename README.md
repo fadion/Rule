@@ -32,7 +32,7 @@ Which method is more easy to read or write is a matter of personal preference, s
 ```json
 {
     "require": {
-        "fadion/rule": "dev-master"
+        "fadion/rule": "~1.0"
     }
 }
 ```
