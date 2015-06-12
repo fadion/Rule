@@ -19,7 +19,6 @@ class RuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('fadion/rule');
     }
 
 	/**
