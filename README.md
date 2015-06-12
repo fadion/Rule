@@ -32,10 +32,12 @@ Which method is more easy to read or write is a matter of personal preference, s
 ```json
 {
     "require": {
-        "fadion/rule": "~1.0"
+        "fadion/rule": "~1.1"
     }
 }
 ```
+
+For Laravel 4, use version `1.0`.
 
 2. Add `Fadion\Rule\RuleServiceProvider` to your `app/config/app.php` file, inside the `providers` array.
 
