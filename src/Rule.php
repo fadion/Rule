@@ -292,6 +292,19 @@ class Rule
     }
 
     /**
+     * The field under validation must be able to be cast
+     * as a boolean. Accepted input are true, false, 1, 0,
+     * "1" and "0".
+     *
+     * @return Rule
+     */
+    public function boolean()
+    {
+        $this->addRule("boolean");
+        return $this;
+    }
+
+    /**
     * The field under validation must have a matching
     * field of foo_confirmation. For example, if the
     * field under validation is password, a matching
@@ -754,13 +767,37 @@ class Rule
     }
 
     /**
+     * The field under validation must be a string type.
+     *
+     * @return Rule
+     */
+    public function string()
+    {
+        $this->addRule("string");
+        return $this;
+    }
+
+    /**
+     * The field under validation must be a valid timezone
+     * identifier according to the timezone_identifiers_list
+     * PHP function.
+     *
+     * @return Rule
+     */
+    public function timezone()
+    {
+        $this->addRule("timezone");
+        return $this;
+    }
+
+    /**
     * The field under validation must be unique on a
     * given database table. If the column option is
     * not specified, the field name will be used.
     * 
     * @param string $table
     * @param string $column
-    * @param int $id
+    * @param mixed $id
     * @return Rule
     */
     public function unique($table, $column = null, $id = false)
