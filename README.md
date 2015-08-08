@@ -5,10 +5,10 @@ A simple Laravel package that provides an expressive alternative to building val
 Instead of this:
 
 ```php
-$rules = array(
+$rules = [
     'username' => 'required|alpha',
     'email' => 'required|email'
-);
+];
 ```
 
 You'll be writing:
@@ -23,7 +23,7 @@ $rules = Rule::get();
 Which method is more easy to read or write is a matter of personal preference, so I'm not taking sides. However, using `Rule` offers two main advantages:
 
 1. Misstyped rule names, non existing rules or missing arguments will throw fatal errors. In contrast, Laravel's rules will fail silently and provide no information when you write 'reqiured' instead of 'required'.
-2. IDE suggestions and auto complete. Every rule is a real, documented function that your IDE can easily pick up. Coupled with [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper), you'll rarely need to open the Validator docs.
+2. IDE suggestions and auto complete. Every rule is a real, documented method that your IDE can easily pick up. Coupled with [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper), you'll rarely need to open the Validator docs.
 
 ## Installation
 
@@ -37,7 +37,7 @@ Which method is more easy to read or write is a matter of personal preference, s
 }
 ```
 
-For Laravel 4, use version `1.0`.
+*For Laravel 4, use version `1.0`*.
 
 2. Add `Fadion\Rule\RuleServiceProvider` to your `app/config/app.php` file, inside the `providers` array.
 
@@ -57,8 +57,7 @@ Rule::add('email')->required()->email();
 
 $validator = Validator::make($inputs, Rule::get());
 
-if ($validator->fails())
-{
+if ($validator->fails()) {
     Return::back()->withInput()->withErrors($validator);
 }
 ```
@@ -93,8 +92,7 @@ Rule::add('email')->unique('users', 'email_address', 10, 'account_id', 1);
 `Rule` handles custom rules in the same way as the predefined ones. It even accepts parameters.
 
 ```php
-Validator::extend('foo', function($attribute, $value, $parameters)
-{
+Validator::extend('foo', function($attribute, $value, $parameters) {
     return $value == 'foo';
 });
 
@@ -111,7 +109,7 @@ Rule::add('languages')->is_array();
 
 **Method names**
 
-Methods can be written as either snake_case (as Laravel accepts rule names) or as camelCase (psr-2). Both cases behave exactly the same, so use whatever feels better.
+Methods can be written as either snake_case (as Laravel accepts rule names) or as camelCase. Both cases behave exactly the same, so use whatever feels better.
 
 So, the methods below are equivalent:
 
