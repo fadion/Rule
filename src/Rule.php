@@ -816,7 +816,11 @@ class Rule
         // so an explicit FALSE is checked.
         if ($id !== false)
         {
-            $rule .= ",$id";
+            if ($id === null) {
+                $rule .= ',NULL';
+            } else {
+                $rule .= ",$id";
+            }
         }
 
         if ($args)

@@ -64,7 +64,7 @@ class RuleTest extends PHPUnit_Framework_TestCase {
             'first_unique' => ['unique:users'],
             'second_unique' => ['unique:users,email'],
             'third_unique' => ['unique:users,email,10'],
-            'fourth_unique' => ['unique:users,email,id,10,account_id,1']
+            'fourth_unique' => ['unique:users,email,10,id,account_id,1']
         ];
 
         $rule = new Rule;
@@ -76,9 +76,23 @@ class RuleTest extends PHPUnit_Framework_TestCase {
         $rule->add('first_unique')->unique('users');
         $rule->add('second_unique')->unique('users', 'email');
         $rule->add('third_unique')->unique('users', 'email', 10);
-        $rule->add('fourth_unique')->unique('users', 'email', 'id', 10, 'account_id', 1);
+        $rule->add('fourth_unique')->unique('users', 'email', 10, 'id', 'account_id', 1);
         
         $this->assertEquals($expected, $rule->get());
     }
-    
+
+    public function testUniqueExcludeIdIsNull()
+    {
+        $expected = [
+            'email1' => ['unique:users,column_email,NULL'],
+            'email2' => ['unique:users,column_email,NULL,column_id']
+        ];
+
+        $rule = new Rule;
+        $rule->add('email1')->unique('users', 'column_email', null);
+        $rule->add('email2')->unique('users', 'column_email', null, 'column_id');
+
+        $this->assertEquals($expected, $rule->get());
+    }
+
 }
