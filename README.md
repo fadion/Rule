@@ -37,11 +37,11 @@ Which method is more easy to read or write is a matter of personal preference, s
 }
 ```
 
-*For Laravel 4, use version `1.0`*.
+2. Add `Fadion\Rule\RuleServiceProvider::class` to your `config/app.php` file, inside the `providers` array.
 
-2. Add `Fadion\Rule\RuleServiceProvider` to your `app/config/app.php` file, inside the `providers` array.
-
-3. Add a new alias: `'Rule' => 'Fadion\Rule\Facades\Rule'` to your `app/config/app.php` file, inside the `aliases` array.
+3. Add a new alias: `'Rule' => Fadion\Rule\Facades\Rule::class` to your `config/app.php` file, inside the `aliases` array.
+ 
+> For Laravel 4, use version `1.0`
 
 ## Usage
 
