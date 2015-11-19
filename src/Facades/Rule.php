@@ -1,11 +1,19 @@
-<?php namespace Fadion\Rule\Facades;
+<?php
+
+namespace Fadion\Rule\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @see \Fadion\Rule\Rule
+ */
 class Rule extends Facade
 {
-    protected static function getFacadeAccessor()
-    {
-        return 'rule';
-    }
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor() { return 'rule'; }
+    
 }

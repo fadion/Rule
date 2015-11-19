@@ -1,25 +1,17 @@
-<?php namespace Fadion\Rule;
+<?php
+
+namespace Fadion\Rule;
 
 use Illuminate\Support\ServiceProvider;
 
 class RuleServiceProvider extends ServiceProvider
 {
-
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
 	 * @var bool
 	 */
 	protected $defer = false;
-
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-    }
 
 	/**
 	 * Register the service provider.
@@ -28,8 +20,7 @@ class RuleServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app['rule'] = $this->app->share(function($app)
-        {
+		$this->app['rule'] = $this->app->share(function($app) {
             return new Rule;
         });
 	}
@@ -41,7 +32,7 @@ class RuleServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return array('rule');
+		return ['rule'];
 	}
 
 }

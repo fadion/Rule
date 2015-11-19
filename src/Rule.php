@@ -1,22 +1,23 @@
-<?php namespace Fadion\Rule;
+<?php
+
+namespace Fadion\Rule;
 
 class Rule
 {
-
     /**
     * @static array Validation rules
     */
-    protected static $rules = array();
+    protected static $rules = [];
 
     /**
     * @static array Messages
     */
-    protected static $messages = array();
+    protected static $messages = [];
 
     /**
     * @static array Input attributes
     */
-    protected static $attributes = array();
+    protected static $attributes = [];
 
     /**
     * @var string Actual input
@@ -30,7 +31,7 @@ class Rule
 
     /**
     * Starts the rule builder with an
-    * input target.
+    * input target
     * 
     * @param string $input
     * @param string|null $attribute
@@ -39,10 +40,9 @@ class Rule
     public function add($input, $attribute = null)
     {
         $this->input = $input;
-        static::$rules[$input] = array();
+        static::$rules[$input] = [];
 
-        if (isset($attribute))
-        {
+        if (isset($attribute)) {
             static::$attributes[$input] = $attribute;
         }
 
@@ -50,7 +50,7 @@ class Rule
     }
 
     /**
-    * Static factory.
+    * Static factory
     * 
     * @param string $input
     * @param string|null $attribute
@@ -64,53 +64,52 @@ class Rule
     }
 
     /**
-    * Returns the array of rules.
+    * Returns the array of rules
     * 
     * @return array
     */
     public function get()
     {
         $rules = static::$rules;
-        static::$rules = array();
+        static::$rules = [];
 
         return $rules;
     }
 
     /**
-    * Returns the array of messages.
+    * Returns the array of messages
     * 
     * @return array
     */
     public function getMessages()
     {
         $messages = static::$messages;
-        static::$messages = array();
+        static::$messages = [];
 
         return $messages;
     }
 
     /**
-    * Returns the array of attributes.
+    * Returns the array of attributes
     * 
     * @return array
     */
     public function getAttributes()
     {
         $attributes = static::$attributes;
-        static::$attributes = array();
+        static::$attributes = [];
 
         return $attributes;
     }
 
     /**
-    * Adds a message for the current rule.
+    * Adds a message for the current rule
     * 
     * @return Rule
     */
     public function message($message)
     {
-        if (isset($this->currentRule))
-        {
+        if (isset($this->currentRule)) {
             static::$messages[$this->input.'.'.$this->currentRule] = $message;
         }
 
@@ -118,7 +117,7 @@ class Rule
     }
 
     /**
-    * Adds a rule to the ruleset.
+    * Adds a rule to the ruleset
     * 
     * @param string $rule 
     * @return void
@@ -136,7 +135,7 @@ class Rule
 
     /**
     * The field under validation must be yes, on, or 1.
-    * This is useful for validating "Terms of Service" acceptance.
+    * This is useful for validating "Terms of Service" acceptance
     *  
     * @return Rule
     */
@@ -148,7 +147,7 @@ class Rule
 
     /**
     * The field under validation must be a valid URL
-    * according to the checkdnsrr PHP function.
+    * according to the checkdnsrr PHP function
     * 
     * @return Rule
     */
@@ -160,7 +159,7 @@ class Rule
 
     /**
     * The field under validation must be a valid URL
-    * according to the checkdnsrr PHP function.
+    * according to the checkdnsrr PHP function
     * 
     * @return Rule
     */
@@ -172,7 +171,7 @@ class Rule
     /**
     * The field under validation must be a value after a
     * given date. The dates will be passed into the PHP
-    * strtotime function.
+    * strtotime function
     * 
     * @param string $date
     * @return Rule
@@ -185,7 +184,7 @@ class Rule
 
     /**
     * The field under validation must be entirely
-    * alphabetic characters.
+    * alphabetic characters
     * 
     * @return Rule
     */
@@ -197,7 +196,7 @@ class Rule
 
     /**
     * The field under validation may have alpha-numeric
-    * characters, as well as dashes and underscores.
+    * characters, as well as dashes and underscores
     * 
     * @return Rule
     */
@@ -209,7 +208,7 @@ class Rule
 
     /**
     * The field under validation may have alpha-numeric
-    * characters, as well as dashes and underscores.
+    * characters, as well as dashes and underscores
     * 
     * @return Rule
     */
@@ -220,7 +219,7 @@ class Rule
 
     /**
     * The field under validation must be entirely
-    * alpha-numeric characters.
+    * alpha-numeric characters
     * 
     * @return Rule
     */
@@ -232,7 +231,7 @@ class Rule
 
     /**
     * The field under validation must be entirely
-    * alpha-numeric characters.
+    * alpha-numeric characters
     * 
     * @return Rule
     */
@@ -242,7 +241,7 @@ class Rule
     }
 
     /**
-    * The field under validation must be of type array.
+    * The field under validation must be of type array
     * 
     * @return Rule
     */
@@ -253,7 +252,7 @@ class Rule
     }
 
     /**
-    * The field under validation must be of type array.
+    * The field under validation must be of type array
     * 
     * @return Rule
     */
@@ -265,7 +264,7 @@ class Rule
     /**
     * The field under validation must be a value preceding
     * the given date. The dates will be passed into the PHP
-    * strtotime function.
+    * strtotime function
     * 
     * @param string $date
     * @return Rule
@@ -279,7 +278,7 @@ class Rule
     /**
     * The field under validation must have a size between
     * the given min and max. Strings, numerics, and files
-    * are evaluated in the same fashion as the size rule.
+    * are evaluated in the same fashion as the size rule
     * 
     * @param mixed $min
     * @param mixed $max
@@ -294,7 +293,7 @@ class Rule
     /**
      * The field under validation must be able to be cast
      * as a boolean. Accepted input are true, false, 1, 0,
-     * "1" and "0".
+     * "1" and "0"
      *
      * @return Rule
      */
@@ -309,7 +308,7 @@ class Rule
     * field of foo_confirmation. For example, if the
     * field under validation is password, a matching
     * password_confirmation field must be present in
-    * the input.
+    * the input
     * 
     * @return Rule
     */
@@ -321,7 +320,7 @@ class Rule
 
     /**
     * The field under validation must be a valid
-    * date according to the strtotime PHP function.
+    * date according to the strtotime PHP function
     * 
     * @return Rule
     */
@@ -334,7 +333,7 @@ class Rule
     /**
     * The field under validation must match the
     * format defined according to the
-    * date_parse_from_format PHP function.
+    * date_parse_from_format PHP function
     * 
     * @param string $format
     * @return Rule
@@ -348,7 +347,7 @@ class Rule
     /**
     * The field under validation must match the
     * format defined according to the
-    * date_parse_from_format PHP function.
+    * date_parse_from_format PHP function
     * 
     * @param string $format
     * @return Rule
@@ -360,7 +359,7 @@ class Rule
 
     /**
     * The given field must be different than
-    * the field under validation.
+    * the field under validation
     * 
     * @param string $field
     * @return Rule
@@ -373,7 +372,7 @@ class Rule
 
     /**
     * The field under validation must be numeric
-    * and must have an exact length of value.
+    * and must have an exact length of value
     * 
     * @param string $value
     * @return Rule
@@ -386,7 +385,7 @@ class Rule
 
     /**
     * The field under validation must have a length
-    * between the given min and max.
+    * between the given min and max
     * 
     * @param mixed $min
     * @param mixed $max
@@ -400,7 +399,7 @@ class Rule
 
     /**
     * The field under validation must have a length
-    * between the given min and max.
+    * between the given min and max
     * 
     * @param mixed $min
     * @param mixed $max
@@ -413,7 +412,7 @@ class Rule
 
     /**
     * The field under validation must be formatted
-    * as an e-mail address.
+    * as an e-mail address
     * 
     * @return Rule
     */
@@ -425,7 +424,7 @@ class Rule
 
     /**
     * The field under validation must exist on
-    * a given database table.
+    * a given database table
     * 
     * @param string $table
     * @param string $column
@@ -435,19 +434,16 @@ class Rule
     {
         $rule = $table;
 
-        // Take any argument after the 2 defined ones.
+        // Take any argument after the 2 defined ones
         $args = array_slice(func_get_args(), 2);
 
-        if (isset($column))
-        {
+        if (isset($column)) {
             $rule .= ",$column";
         }
 
-        if ($args)
-        {
-            // Add optional arguments.
-            foreach ($args as $arg)
-            {
+        if ($args) {
+            // Add optional arguments
+            foreach ($args as $arg) {
                 $rule .= ",$arg";
             }
         }
@@ -458,7 +454,7 @@ class Rule
 
     /**
     * The file under validation must be an
-    * image (jpeg, png, bmp, or gif).
+    * image (jpeg, png, bmp, or gif)
     * 
     * @return Rule
     */
@@ -470,19 +466,19 @@ class Rule
 
     /**
     * The field under validation must be included
-    * in the given list of values.
+    * in the given list of values
     * 
     * @param array $list
     * @return Rule
     */
-    public function in(Array $list)
+    public function in(array $list)
     {
         $this->addRule('in:'.implode(',', $list));
         return $this;
     }
 
     /**
-    * The field under validation must have an integer value.
+    * The field under validation must have an integer value
     * 
     * @return Rule
     */
@@ -494,7 +490,7 @@ class Rule
 
     /**
     * The field under validation must be formatted
-    * as an IP address.
+    * as an IP address
     * 
     * @return Rule
     */
@@ -508,7 +504,7 @@ class Rule
     * The field under validation must be less than
     * or equal to a maximum value. Strings, numerics,
     * and files are evaluated in the same fashion as
-    * the size rule.
+    * the size rule
     * 
     * @param int $value
     * @return Rule
@@ -521,12 +517,12 @@ class Rule
 
     /**
     * The file under validation must have a MIME
-    * type corresponding to one of the listed extensions.
+    * type corresponding to one of the listed extensions
     * 
     * @param array $list
     * @return Rule
     */
-    public function mimes(Array $list)
+    public function mimes(array $list)
     {
         $this->addRule('mimes:'.implode(',', $list));
         return $this;
@@ -535,7 +531,7 @@ class Rule
     /**
     * The field under validation must have a minimum
     * value. Strings, numerics, and files are evaluated
-    * in the same fashion as the size rule.
+    * in the same fashion as the size rule
     * 
     * @param int $value
     * @return Rule
@@ -548,12 +544,12 @@ class Rule
 
     /**
     * The field under validation must not be
-    * included in the given list of values.
+    * included in the given list of values
     * 
     * @param array $list
     * @return Rule
     */
-    public function not_in(Array $list)
+    public function not_in(array $list)
     {
         $this->addRule('not_in:'.implode(',', $list));
         return $this;
@@ -561,18 +557,18 @@ class Rule
 
     /**
     * The field under validation must not be
-    * included in the given list of values.
+    * included in the given list of values
     * 
     * @param array $list
     * @return Rule
     */
-    public function notIn(Array $list)
+    public function notIn(array $list)
     {
         return $this->not_in($list);
     }
 
     /**
-    * The field under validation must have a numeric value.
+    * The field under validation must have a numeric value
     * 
     * @return Rule
     */
@@ -584,7 +580,7 @@ class Rule
 
     /**
     * The field under validation must match the given
-    * regular expression.
+    * regular expression
     * 
     * @param string $pattern
     * @return Rule
@@ -597,7 +593,7 @@ class Rule
 
     /**
     * The field under validation must be present
-    * in the input data.
+    * in the input data
     * 
     * @return Rule
     */
@@ -609,7 +605,7 @@ class Rule
 
     /**
     * The field under validation must be present if
-    * the field field is equal to value.
+    * the field field is equal to value
     * 
     * @param string $field
     * @param string $value
@@ -623,7 +619,7 @@ class Rule
 
     /**
     * The field under validation must be present if
-    * the field field is equal to value.
+    * the field field is equal to value
     * 
     * @param string $field
     * @param string $value
@@ -636,12 +632,12 @@ class Rule
 
     /**
     * The field under validation must be present only
-    * if any of the other specified fields are present.
+    * if any of the other specified fields are present
     * 
     * @param array $list
     * @return Rule
     */
-    public function required_with(Array $list)
+    public function required_with(array $list)
     {
         $this->addRule('required_with:'.implode(',', $list));
         return $this;
@@ -649,24 +645,24 @@ class Rule
 
     /**
     * The field under validation must be present only
-    * if any of the other specified fields are present.
+    * if any of the other specified fields are present
     * 
     * @param array $list
     * @return Rule
     */
-    public function requiredWith(Array $list)
+    public function requiredWith(array $list)
     {
         return $this->required_with($list);
     }
 
     /**
     * The field under validation must be present only
-    * if all of the other specified fields are present.
+    * if all of the other specified fields are present
     * 
     * @param array $list
     * @return Rule
     */
-    public function required_with_all(Array $list)
+    public function required_with_all(array $list)
     {
         $this->addRule('required_with_all:'.implode(',', $list));
         return $this;
@@ -674,12 +670,12 @@ class Rule
 
     /**
     * The field under validation must be present only
-    * if all of the other specified fields are present.
+    * if all of the other specified fields are present
     * 
     * @param array $list
     * @return Rule
     */
-    public function requiredWithAll(Array $list)
+    public function requiredWithAll(array $list)
     {
         return $this->required_with_all($list);
     }
@@ -687,12 +683,12 @@ class Rule
     /**
     * The field under validation must be present
     * only when any of the other specified fields
-    * are not present.
+    * are not present
     * 
     * @param array $list
     * @return Rule
     */
-    public function required_without(Array $list)
+    public function required_without(array $list)
     {
         $this->addRule('required_without:'.implode(',', $list));
         return $this;
@@ -701,12 +697,12 @@ class Rule
     /**
     * The field under validation must be present
     * only when any of the other specified fields
-    * are not present.
+    * are not present
     * 
     * @param array $list
     * @return Rule
     */
-    public function requiredWithout(Array $list)
+    public function requiredWithout(array $list)
     {
         return $this->required_without($list);
     }
@@ -714,12 +710,12 @@ class Rule
     /**
     * The field under validation must be present only
     * when the all of the other specified fields are
-    * not present.
+    * not present
     * 
     * @param array $list
     * @return Rule
     */
-    public function required_without_all(Array $list)
+    public function required_without_all(array $list)
     {
         $this->addRule('required_without_all:'.implode(',', $list));
         return $this;
@@ -728,18 +724,18 @@ class Rule
     /**
     * The field under validation must be present only
     * when the all of the other specified fields are
-    * not present.
+    * not present
     * 
     * @param array $list
     * @return Rule
     */
-    public function requiredWithoutAll(Array $list)
+    public function requiredWithoutAll(array $list)
     {
         return $this->required_without_all($list);
     }
 
     /**
-    * The given field must match the field under validation.
+    * The given field must match the field under validation
     * 
     * @param string $field
     * @return Rule
@@ -755,7 +751,7 @@ class Rule
     * the given value. For string data, value corresponds
     * to the number of characters. For numeric data, value
     * corresponds to a given integer value. For files,
-    * size corresponds to the file size in kilobytes.
+    * size corresponds to the file size in kilobytes
     * 
     * @param param $value
     * @return Rule
@@ -767,7 +763,7 @@ class Rule
     }
 
     /**
-     * The field under validation must be a string type.
+     * The field under validation must be a string type
      *
      * @return Rule
      */
@@ -780,7 +776,7 @@ class Rule
     /**
      * The field under validation must be a valid timezone
      * identifier according to the timezone_identifiers_list
-     * PHP function.
+     * PHP function
      *
      * @return Rule
      */
@@ -793,7 +789,7 @@ class Rule
     /**
     * The field under validation must be unique on a
     * given database table. If the column option is
-    * not specified, the field name will be used.
+    * not specified, the field name will be used
     * 
     * @param string $table
     * @param string $column
@@ -804,30 +800,27 @@ class Rule
     {
         $rule = $table;
 
-        // Take any argument after the 3 defined ones.
+        // Take any argument after the 3 defined ones
         $args = array_slice(func_get_args(), 3);
 
-        if (isset($column))
-        {
+        if (isset($column)) {
             $rule .= ",$column";
         }
 
         // A NULL value is a valid one for the validator,
-        // so an explicit FALSE is checked.
-        if ($id !== false)
-        {
+        // so an explicit FALSE is checked
+        if ($id !== false) {
             if ($id === null) {
                 $rule .= ',NULL';
-            } else {
+            }
+            else {
                 $rule .= ",$id";
             }
         }
 
-        if ($args)
-        {
-            // Add optional arguments.
-            foreach ($args as $arg)
-            {
+        if ($args) {
+            // Add optional arguments
+            foreach ($args as $arg) {
                 $rule .= ",$arg";
             }
         }
@@ -837,7 +830,7 @@ class Rule
     }
 
     /**
-    * The field under validation must be formatted as an URL.
+    * The field under validation must be formatted as an URL
     * 
     * @return Rule
     */
@@ -849,7 +842,7 @@ class Rule
 
     /**
     * Run validation checks against a field only if that field
-    * is present in the input array.
+    * is present in the input array
     * 
     * @return Rule
     */
@@ -860,7 +853,7 @@ class Rule
     }
 
     /**
-    * Handle custom rules.
+    * Handle custom rules
     * 
     * @param string $name
     * @param array $args
@@ -870,12 +863,10 @@ class Rule
     {
         $rule = snake_case($name);
 
-        if (count($args))
-        {
+        if (count($args)) {
             $rule .= ':';
 
-            foreach ($args as $arg)
-            {
+            foreach ($args as $arg) {
                 $rule .= ",$arg";
             }
         }
