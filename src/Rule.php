@@ -50,20 +50,6 @@ class Rule
     }
 
     /**
-    * Static factory
-    * 
-    * @param string $input
-    * @param string|null $attribute
-    * @return Rule
-    */
-    public static function make($input, $attribute = null)
-    {
-        $rule = new static();
-
-        return $rule->add($input, $attribute);
-    }
-
-    /**
     * Returns the array of rules
     * 
     * @return array
@@ -489,6 +475,18 @@ class Rule
     }
 
     /**
+    * The field under validation must be a
+    * valid JSON string
+    * 
+    * @return Rule
+    */
+    public function json()
+    {
+        $this->addRule('json');
+        return $this;
+    }
+
+    /**
     * The field under validation must be formatted
     * as an IP address
     * 
@@ -605,7 +603,7 @@ class Rule
 
     /**
     * The field under validation must be present if
-    * the field field is equal to value
+    * the anotherfield field is equal to value
     * 
     * @param string $field
     * @param string $value
@@ -619,7 +617,7 @@ class Rule
 
     /**
     * The field under validation must be present if
-    * the field field is equal to value
+    * the anotherfield field is equal to value
     * 
     * @param string $field
     * @param string $value
@@ -628,6 +626,35 @@ class Rule
     public function requiredIf($field, $value)
     {
         return $this->required_if($field, $value);
+    }
+
+    /**
+    * The field under validation must be present
+    * unless the anotherfield field is equal to
+    * any value
+    * 
+    * @param string $field
+    * @param string $value
+    * @return Rule
+    */
+    public function required_unless($field, $value)
+    {
+        $this->addRule("required_unless:$field,$value");
+        return $this;
+    }
+
+    /**
+    * The field under validation must be present
+    * unless the anotherfield field is equal to
+    * any value
+    * 
+    * @param string $field
+    * @param string $value
+    * @return Rule
+    */
+    public function requiredUnless($field, $value)
+    {
+        return $this->required_unless($field, $value);
     }
 
     /**
